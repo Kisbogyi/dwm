@@ -2,7 +2,8 @@
 
 CONFIG=/home/bandi/Configs/dwm/
 #$CONFIG/bar.sh &
-feh --bg-fill ~/Pictures/CassiopeaA.png -Z &
+feh --bg-fill ~/Pictures/purple.png -Z &
+setxkbmap us
 dwmblocks &
 exec dwm
 
