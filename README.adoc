@@ -1,0 +1,8 @@
+= My DWM fork with some custom modifications
+
+== Patches
+
+* Gaps
+* Swallow
+* Some custom modifications
+

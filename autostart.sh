@@ -1,10 +1,16 @@
 #!/bin/bash
 
-CONFIG=/home/bandi/Configs/dwm/
+CONFIG=/home/bandi/Tools/Configs/dwm/
 #$CONFIG/bar.sh &
-feh --bg-fill ~/Pictures/purple.png -Z &
+
+# if [[ $(xrandr | grep "HDMI-1-0 connected" | cut -d " " -f 1-2) ]]; then 
+         # xrandr --output HDMI-1-0 --mode 3840x2160 --right-of eDP;
+# fi
+feh --bg-fill ~/Pictures/wp.jpg -Z
+xss-lock --transfer-sleep-lock -- i3lock -k -i ~/Pictures/wp.png -t --nofork &
 setxkbmap us
 dwmblocks &
+wmname LG3D 
 exec dwm
 
 #
