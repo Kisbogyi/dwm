@@ -73,9 +73,17 @@ static const char *termcmd[]  = { "st", NULL };
 static const char *lock[]  = { "systemctl", "suspend", NULL };
 static const char *keyboardlayout[]  = { "switchLayout", NULL };
 static const char *screenshot[] = {"flameshot", "launcher", NULL};
+static const char *increase_volume[] = {"pulsemixer", "--change-volume", "+10", NULL};
+static const char *decrease_volume[] = {"pulsemixer", "--change-volume", "-10", NULL};
+static const char *increase_brightness[] = {"brightnessctl", "s", "+10%", NULL};
+static const char *decrease_brightness[] = {"brightnessctl", "s", "10%-", NULL};
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
+	{ MODKEY,                       XK_F5,     spawn,          {.v = decrease_brightness} },
+	{ MODKEY,                       XK_F6,     spawn,          {.v = increase_brightness} },
+	{ MODKEY,                       XK_F2,     spawn,          {.v = decrease_volume} },
+	{ MODKEY,                       XK_F3,     spawn,          {.v = increase_volume} },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_m,	   spawn,          {.v = keyboardlayout} },
