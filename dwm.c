@@ -66,6 +66,20 @@
 #define GAP_TOGGLE 100
 #define GAP_RESET  0
 
+
+void logger(char * value) {
+    FILE *fptr;
+
+    // Open a file in append mode
+    fptr = fopen("/tmp/dwmlog", "a");
+
+    // Append some text to the file
+    fprintf(fptr, value);
+
+    // Close the file
+    fclose(fptr);
+}
+
 /* enums */
 enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
 enum { SchemeNorm, SchemeSel }; /* color schemes */
@@ -1846,13 +1860,27 @@ void
 sigstatusbar(const Arg *arg)
 {
 	union sigval sv;
+    logger("sigstatusbar called\n");
+    logger("logger test\n");
 
-	if (!statussig)
+	if (!statussig) {
+        logger("no statussig\n");
 		return;
+    }
+
+    logger("running\n");
 	sv.sival_int = arg->i;
-	if ((statuspid = getstatusbarpid()) <= 0)
+    char tmp[125];
+    sprintf(tmp, "signal: %d\n", arg->i);
+    logger(tmp);
+	if ((statuspid = getstatusbarpid()) <= 0) {
+        logger("no statusbarpid\n");
 		return;
-
+    }
+    
+    sprintf(tmp, "signal: %d\n", statuspid);
+    logger(tmp);
+    logger("sigstatusbar correctly ran\n");
 	sigqueue(statuspid, SIGRTMIN+statussig, sv);
 }
 
