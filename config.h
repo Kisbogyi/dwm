@@ -1,5 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
+#define STATUSBAR "dwmblocks"
+
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const int startwithgaps	     = 1;	 /* 1 means gaps are used by default */
@@ -9,7 +11,7 @@ static const int swallowfloating    = 1;        /* 1 means swallow floating wind
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "BlexMonoNerdFont:size=10" };
-static const char dmenufont[]       = "BlexMonoNerdFont:size=15";
+static const char dmenufont[]       = "BlexMonoNerdFont:size=10";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -133,7 +135,9 @@ static const Button buttons[] = {
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
+	{ ClkStatusText,        0,              Button1,        sigstatusbar,   {.i = 1} },
+	{ ClkStatusText,        0,              Button2,        sigstatusbar,   {.i = 2} },
+	{ ClkStatusText,        0,              Button3,        sigstatusbar,   {.i = 3} },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
