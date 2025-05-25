@@ -67,19 +67,6 @@
 #define GAP_RESET  0
 
 
-void logger(char * value) {
-    FILE *fptr;
-
-    // Open a file in append mode
-    fptr = fopen("/tmp/dwmlog", "a");
-
-    // Append some text to the file
-    fprintf(fptr, value);
-
-    // Close the file
-    fclose(fptr);
-}
-
 /* enums */
 enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
 enum { SchemeNorm, SchemeSel }; /* color schemes */
@@ -539,16 +526,8 @@ buttonpress(XEvent *e)
             click = ClkStatusText;
             statussig = 10;
             for (text = s = stext; *s && x <= ev->x; s++) {
-                logger("s: \n");
-                logger(s);
-                char tmp[350];
-                sprintf(tmp, "status sig: %d\n", statussig);
-                logger(tmp);
-                logger("\n end \n");
                 if ((unsigned char)(*s) =='|') {
                     ch = *s;
-                    sprintf(tmp, "ch: %d, x: %d, x2: %d, pad: %d, text: %s\n", ch, x, ev->x, lrpad, text);
-					logger(tmp);
 					*s = '\0';
 					x += TEXTW(text) - lrpad;
 					*s = ch;
@@ -1865,27 +1844,16 @@ void
 sigstatusbar(const Arg *arg)
 {
 	union sigval sv;
-    logger("sigstatusbar called\n");
-    logger("logger test\n");
 
 	if (!statussig) {
-        logger("no statussig\n");
 		return;
     }
 
-    logger("running\n");
 	sv.sival_int = arg->i;
-    char tmp[125];
-    sprintf(tmp, "signal: %d\n", statussig);
-    logger(tmp);
 	if ((statuspid = getstatusbarpid()) <= 0) {
-        logger("no statusbarpid\n");
 		return;
     }
     
-    sprintf(tmp, "signal: %d\n", statuspid);
-    logger(tmp);
-    logger("sigstatusbar correctly ran\n");
 	sigqueue(statuspid, SIGRTMIN+statussig, sv);
 }
 
