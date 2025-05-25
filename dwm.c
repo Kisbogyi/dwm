@@ -514,8 +514,8 @@ buttonpress(XEvent *e)
 	Arg arg = {0};
 	Client *c;
 	Monitor *m;
-	char *text, *s, ch;
 	XButtonPressedEvent *ev = &e->xbutton;
+	char *text, *s, ch;
 
 	click = ClkRootWin;
 	/* focus monitor if necessary */
@@ -537,21 +537,26 @@ buttonpress(XEvent *e)
         else if (ev->x > selmon->ww - statusw) {
             x = selmon->ww - statusw;
             click = ClkStatusText;
-            statussig = 0;
+            statussig = 10;
             for (text = s = stext; *s && x <= ev->x; s++) {
-                if ((unsigned char)(*s) < ' ') {
+                logger("s: \n");
+                logger(s);
+                char tmp[350];
+                sprintf(tmp, "status sig: %d\n", statussig);
+                logger(tmp);
+                logger("\n end \n");
+                if ((unsigned char)(*s) =='|') {
                     ch = *s;
-                    *s = '\0';
-                    x += TEXTW(text) - lrpad;
-                    *s = ch;
-                    text = s + 1;
+                    sprintf(tmp, "ch: %d, x: %d, x2: %d, pad: %d, text: %s\n", ch, x, ev->x, lrpad, text);
+					logger(tmp);
+					*s = '\0';
+					x += TEXTW(text) - lrpad;
+					*s = ch;
+					text = s + 1;
                     if (x >= ev->x)
                         break;
-                    /* reset on matching signal raw byte */
-                    if (ch == statussig)
-                        statussig = 0;
                     else
-                        statussig = ch;
+                        statussig++;
                 }
             }
         } else {
@@ -1871,7 +1876,7 @@ sigstatusbar(const Arg *arg)
     logger("running\n");
 	sv.sival_int = arg->i;
     char tmp[125];
-    sprintf(tmp, "signal: %d\n", arg->i);
+    sprintf(tmp, "signal: %d\n", statussig);
     logger(tmp);
 	if ((statuspid = getstatusbarpid()) <= 0) {
         logger("no statusbarpid\n");
