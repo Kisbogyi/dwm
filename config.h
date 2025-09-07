@@ -23,7 +23,7 @@ static const char col_dark_purple[] = "#411f4c";
 static const char col_light[] = "#F1A5AD";
 static const char *colors[][3] = {
     /*               fg         bg         border   */
-    [SchemeNorm] = {col_light, col_light, col_light},
+    [SchemeNorm] = {col_light, col_gray1, col_dark_purple},
     [SchemeSel] = {col_dark_purple, col_light_purple, col_light_purple},
 };
 
