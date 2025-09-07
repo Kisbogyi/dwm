@@ -10,7 +10,6 @@ feh --bg-fill ~/Rice/wallpaper/wallpaper_earth.png
 xss-lock --transfer-sleep-lock -- i3lock -k -i ~/Rice/wallpaper/wallpaper_earth.png -t --nofork &
 setxkbmap us
 dwmblocks &
-wmname LG3D 
 exec dwm
 
 #
