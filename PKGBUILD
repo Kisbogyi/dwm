@@ -5,7 +5,7 @@
 # Contributor: Grigorios Bouzakis <grbzks@gmail.com>
 
 pkgname=dwm_custom
-pkgver=6.6.22
+pkgver=6.6.23
 pkgrel=1
 pkgdesc="A dynamic window manager for X"
 url="https://github.com/Kisbogyi/dwm"
@@ -14,7 +14,6 @@ license=('MIT')
 options=(zipman)
 provides=('dwm')
 depends=('libx11' 'libxinerama' 'libxft' 'freetype2')
-# install=dwm.install
 source=(git+https://github.com/Kisbogyi/dwm)
 sha256sums=('SKIP')
 
