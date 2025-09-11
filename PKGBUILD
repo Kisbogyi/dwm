@@ -5,7 +5,7 @@
 # Contributor: Grigorios Bouzakis <grbzks@gmail.com>
 
 pkgname=dwm_custom
-pkgver=6.6.23
+pkgver=6.6.24
 pkgrel=1
 pkgdesc="A dynamic window manager for X"
 url="https://github.com/Kisbogyi/dwm"
